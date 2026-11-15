@@ -1,0 +1,524 @@
+
+/* ==============================
+   CHICHII PROPOSAL WEBSITE
+   MAIN STYLING
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #66334c;
+
+    background:
+        radial-gradient(circle at 15% 15%, #ffffff, transparent 35%),
+        linear-gradient(135deg, #fff0f5, #f8c5d8, #fce6ed);
+
+    overflow-x: hidden;
+}
+
+/* ==============================
+   PAGE TRANSITIONS
+================================= */
+
+.page {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 18px;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+.page.active {
+    display: flex;
+    animation: pageAppear 0.9s ease;
+}
+
+@keyframes pageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================
+   MAIN CARD
+================================= */
+
+.main-card {
+    width: 100%;
+    max-width: 720px;
+
+    padding: 55px 35px;
+
+    text-align: center;
+
+    background: rgba(255, 250, 250, 0.85);
+
+    border: 1px solid rgba(255,255,255,0.9);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 70px rgba(170, 75, 110, 0.15);
+
+    backdrop-filter: blur(15px);
+}
+
+/* ==============================
+   TEXT STYLING
+================================= */
+
+.subtitle {
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: #c16a8c;
+    margin-bottom: 20px;
+}
+
+.script-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(45px, 8vw, 75px);
+    color: #c34f7c;
+    margin: 15px 0;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(25px, 5vw, 38px);
+    color: #63334b;
+    line-height: 1.35;
+    margin: 15px 0;
+}
+
+.description {
+    color: #92647a;
+    font-size: 14px;
+    line-height: 2;
+    margin: 20px auto;
+    max-width: 490px;
+}
+
+.bottom-text {
+    color: #bd8aa0;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+/* ==============================
+   BUTTONS
+================================= */
+
+.main-button {
+    padding: 16px 32px;
+
+    background: linear-gradient(
+        135deg,
+        #ed91b2,
+        #c74c7d
+    );
+
+    color: white;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 50px;
+
+    box-shadow: 0 10px 25px rgba(190, 70, 120, 0.3);
+
+    transition: all 0.35s ease;
+
+    cursor: pointer;
+}
+
+.main-button:hover {
+    transform: translateY(-5px) scale(1.04);
+
+    box-shadow: 0 15px 30px rgba(190, 70, 120, 0.4);
+}
+
+/* ==============================
+   ENVELOPE
+================================= */
+
+.envelope-container {
+    width: 290px;
+    height: 190px;
+
+    margin: 40px auto;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    filter: drop-shadow(0 15px 15px rgba(150, 60, 100, 0.2));
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+
+    background: #d86e99;
+
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.letter {
+    position: absolute;
+
+    width: 86%;
+    height: 85%;
+
+    left: 7%;
+    top: 8%;
+
+    background: #fffaf5;
+
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
+
+    color: #c34f7c;
+
+    z-index: 2;
+
+    transition: transform 1s 0.3s ease;
+}
+
+.envelope-flap {
+    position: absolute;
+
+    inset: 0;
+
+    background: #f5b4ca;
+
+    clip-path: polygon(0 0, 50% 58%, 100% 0);
+
+    transform-origin: top;
+
+    transition: transform 0.9s ease;
+
+    z-index: 4;
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        135deg,
+        #ed9bb8,
+        #d96e98
+    );
+
+    clip-path: polygon(
+        0 100%,
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%
+    );
+
+    z-index: 3;
+}
+
+.wax-seal {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    background: #fff0f5;
+    color: #c34f7c;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    top: 48%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 5;
+
+    transition: opacity 0.4s;
+}
+
+.envelope-container.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-container.open .letter {
+    transform: translateY(-115px);
+}
+
+.envelope-container.open .wax-seal {
+    opacity: 0;
+}
+
+/* ==============================
+   LOVE LETTER PAGE
+================================= */
+
+.love-letter {
+    background: #fffdfb;
+
+    padding: 30px;
+
+    border: 1px solid #f3d7e1;
+
+    border-radius: 15px;
+
+    text-align: left;
+
+    margin: 25px 0;
+
+    box-shadow: inset 0 0 25px rgba(240, 180, 200, 0.1);
+}
+
+.love-letter p {
+    font-family: 'Playfair Display', serif;
+
+    color: #805269;
+
+    font-size: 15px;
+
+    line-height: 2;
+
+    margin-bottom: 18px;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive !important;
+
+    font-size: 32px !important;
+
+    color: #c34f7c !important;
+}
+
+/* ==============================
+   PROPOSAL BUTTON AREA
+================================= */
+
+.button-area {
+    position: relative;
+
+    width: 100%;
+    min-height: 230px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+}
+
+.yes-button {
+    background: linear-gradient(135deg, #e878a3, #c13d73);
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    padding: 17px 40px;
+
+    border-radius: 50px;
+
+    box-shadow: 0 10px 30px rgba(190, 60, 110, 0.3);
+
+    transition: all 0.55s cubic-bezier(.2, 1.5, .4, 1);
+
+    z-index: 5;
+}
+
+.think-button {
+    background: white;
+
+    color: #bd527c;
+
+    border: 1px solid #edc2d3;
+
+    padding: 15px 25px;
+
+    border-radius: 50px;
+}
+
+/* ==============================
+   YES CELEBRATION
+================================= */
+
+#yes-message {
+    display: none;
+
+    color: #c34278;
+
+    font-family: 'Playfair Display', serif;
+
+    margin-top: 30px;
+}
+
+#yes-message.show {
+    display: block;
+
+    animation: celebrationPop 0.8s cubic-bezier(.2, 1.6, .4, 1);
+}
+
+#yes-message h1 {
+    font-size: clamp(35px, 7vw, 65px);
+    margin-bottom: 15px;
+}
+
+#yes-message h2 {
+    color: #d75b8b;
+}
+
+@keyframes celebrationPop {
+    from {
+        transform: scale(0.2) rotate(-10deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+/* ==============================
+   FINAL PAGE
+================================= */
+
+.final-heart {
+    font-size: 65px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* ==============================
+   FLOATING HEARTS
+================================= */
+
+#hearts-container {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.floating-heart {
+    position: absolute;
+
+    bottom: -30px;
+
+    color: #d95c8b;
+
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(40deg);
+        opacity: 0;
+    }
+}
+
+/* ==============================
+   CONFETTI
+================================= */
+
+.confetti {
+    position: fixed;
+
+    top: -30px;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ==============================
+   MOBILE RESPONSIVENESS
+================================= */
+
+@media(max-width: 600px) {
+
+    .main-card {
+        padding: 35px 20px;
+    }
+
+    .love-letter {
+        padding: 20px;
+    }
+
+    .envelope-container {
+        transform: scale(0.9);
+        margin: 25px auto;
+    }
+
+    .button-area {
+        min-height: 210px;
+    }
+
+}
